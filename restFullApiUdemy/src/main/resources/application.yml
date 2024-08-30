@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/startupDB?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: 12345
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+#      Nao e mais necessario especificar o hibernate dialect,
+#      pois o proprio spring boot vai procurar essa informacao
+
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQLDialect
