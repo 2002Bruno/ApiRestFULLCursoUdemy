@@ -1,4 +1,4 @@
-package br.com.divinecode.restfullapiudemy.domain;
+package br.com.divinecode.restfullapiudemy.domain.person;
 
 import jakarta.persistence.*;
 import lombok.Data;

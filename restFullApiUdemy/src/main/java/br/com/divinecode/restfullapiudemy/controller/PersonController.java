@@ -1,6 +1,7 @@
 package br.com.divinecode.restfullapiudemy.controller;
 
-import br.com.divinecode.restfullapiudemy.domain.Person;
+import br.com.divinecode.restfullapiudemy.domain.person.Person;
+import br.com.divinecode.restfullapiudemy.domain.person.personDTO.PersonDTO;
 import br.com.divinecode.restfullapiudemy.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,35 +20,35 @@ public class PersonController {
 
     //E necessario deixar a configuracao produces = MediaType.APPLICATION_JSON_VALUE para a integracao com o Swagger
     @GetMapping(value = "/find-by-id/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Person> findById(@PathVariable(value = "id") Long id) {
-        Person person = personService.findById(id);
+    public ResponseEntity<PersonDTO> findById(@PathVariable(value = "id") Long id) {
+        PersonDTO person = personService.findById(id);
 
         return ResponseEntity.ok(person);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Person>> findAll() {
-        List<Person> personList = personService.findAll();
+    public ResponseEntity<List<PersonDTO>> findAll() {
+        List<PersonDTO> personList = personService.findAll();
 
         return ResponseEntity.ok().body(personList);
     }
 
     @PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Person> create(@RequestBody Person person) {
-        Person newPerson = personService.create(person);
+    public ResponseEntity<PersonDTO> create(@RequestBody PersonDTO person) {
+        PersonDTO newPerson = personService.create(person);
 
         return ResponseEntity.ok(newPerson);
     }
 
     @PostMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> update(@RequestBody Person person) {
-        Person newPerson = personService.update(person);
+    public ResponseEntity<PersonDTO> update(@RequestBody PersonDTO person) {
+        PersonDTO newPerson = personService.update(person);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(newPerson);
     }
 
     @DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Person> delete(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
         personService.delete(id);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
