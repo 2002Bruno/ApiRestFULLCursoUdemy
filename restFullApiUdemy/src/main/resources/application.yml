@@ -7,7 +7,7 @@ spring:
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: false
 
 #      Nao e mais necessario especificar o hibernate dialect,
