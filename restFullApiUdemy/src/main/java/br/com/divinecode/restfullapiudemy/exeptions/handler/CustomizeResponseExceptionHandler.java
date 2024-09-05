@@ -1,7 +1,7 @@
-package br.com.divinecode.exeptions.handler;
+package br.com.divinecode.restfullapiudemy.exeptions.handler;
 
-import br.com.divinecode.exeptions.ExeptionResponse;
-import br.com.divinecode.exeptions.ResourceNotFoundException;
+import br.com.divinecode.restfullapiudemy.exeptions.ExeptionResponse;
+import br.com.divinecode.restfullapiudemy.exeptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

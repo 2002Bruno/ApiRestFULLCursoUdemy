@@ -1,4 +1,4 @@
-package br.com.divinecode.exeptions;
+package br.com.divinecode.restfullapiudemy.exeptions;
 
 import java.io.Serializable;
 import java.util.Date;

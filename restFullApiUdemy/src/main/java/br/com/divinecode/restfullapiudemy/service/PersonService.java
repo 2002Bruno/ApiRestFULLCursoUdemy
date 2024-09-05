@@ -1,6 +1,6 @@
 package br.com.divinecode.restfullapiudemy.service;
 
-import br.com.divinecode.exeptions.ResourceNotFoundException;
+import br.com.divinecode.restfullapiudemy.exeptions.ResourceNotFoundException;
 import br.com.divinecode.restfullapiudemy.domain.person.Person;
 import br.com.divinecode.restfullapiudemy.domain.person.personDTO.PersonDTO;
 import br.com.divinecode.restfullapiudemy.mapper.DozerMapper;
