@@ -1,6 +1,7 @@
 package br.com.divinecode.restfullapiudemy.exeptions.handler;
 
 import br.com.divinecode.restfullapiudemy.exeptions.ExeptionResponse;
+import br.com.divinecode.restfullapiudemy.exeptions.RequiredObjectIsNullException;
 import br.com.divinecode.restfullapiudemy.exeptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,5 +38,15 @@ public class CustomizeResponseExceptionHandler extends ResponseEntityExceptionHa
                 request.getDescription(false));
 
         return new ResponseEntity<>(exeptionResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(RequiredObjectIsNullException.class)
+    public final ResponseEntity<ExeptionResponse> handleBadRequestException(Exception ex, WebRequest request) {
+        ExeptionResponse exeptionResponse = new ExeptionResponse(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+
+        return new ResponseEntity<>(exeptionResponse, HttpStatus.BAD_REQUEST);
     }
 }

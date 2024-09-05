@@ -1,6 +1,7 @@
 package br.com.divinecode.restfullapiudemy.service;
 
 import br.com.divinecode.restfullapiudemy.controller.PersonController;
+import br.com.divinecode.restfullapiudemy.exeptions.RequiredObjectIsNullException;
 import br.com.divinecode.restfullapiudemy.exeptions.ResourceNotFoundException;
 import br.com.divinecode.restfullapiudemy.domain.person.Person;
 import br.com.divinecode.restfullapiudemy.domain.person.personDTO.PersonDTO;
@@ -32,6 +33,9 @@ public class PersonService {
     }
 
     public PersonDTO create(PersonDTO personDTO) {
+
+        if(personDTO == null) throw new RequiredObjectIsNullException();
+
         Person personConverted = dozerMapper.parseObject(personDTO, Person.class);
 
         Person personSaved = personRepository.save(personConverted);
@@ -42,6 +46,9 @@ public class PersonService {
     }
 
     public PersonDTO update(PersonDTO personDTO) {
+
+        if(personDTO == null) throw new RequiredObjectIsNullException();
+
         Person person = dozerMapper.parseObject(personDTO, Person.class);
         Person personSaved = personRepository.saveAndFlush(person);
 
