@@ -1,11 +1,14 @@
 package br.com.divinecode.restfullapiudemy.service;
 
+import br.com.divinecode.restfullapiudemy.controller.PersonController;
 import br.com.divinecode.restfullapiudemy.exeptions.ResourceNotFoundException;
 import br.com.divinecode.restfullapiudemy.domain.person.Person;
 import br.com.divinecode.restfullapiudemy.domain.person.personDTO.PersonDTO;
 import br.com.divinecode.restfullapiudemy.mapper.DozerMapper;
 import br.com.divinecode.restfullapiudemy.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +27,7 @@ public class PersonService {
 
         PersonDTO personDTO = dozerMapper.parseObject(personById, PersonDTO.class);
 
+        personDTO.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
         return personDTO;
     }
 
@@ -33,6 +37,7 @@ public class PersonService {
         Person personSaved = personRepository.save(personConverted);
 
         PersonDTO personDTOSaved = dozerMapper.parseObject(personSaved, PersonDTO.class);
+        personDTOSaved.add(linkTo(methodOn(PersonController.class).findById(personDTOSaved.getId())).withSelfRel());
         return personDTOSaved;
     }
 
@@ -41,6 +46,7 @@ public class PersonService {
         Person personSaved = personRepository.saveAndFlush(person);
 
         PersonDTO personDTOSaved = dozerMapper.parseObject(personSaved, PersonDTO.class);
+        personDTOSaved.add(linkTo(methodOn(PersonController.class).findById(personDTOSaved.getId())).withSelfRel());
         return personDTOSaved;
     }
 
@@ -53,9 +59,9 @@ public class PersonService {
     }
 
     public List<PersonDTO> findAll() {
-        List<Person> personList = personRepository.findAll();
-        List<PersonDTO> personDTOList = dozerMapper.parseListObject(personList, PersonDTO.class);
+        var personDTOList = DozerMapper.parseListObject(personRepository.findAll(), PersonDTO.class);
 
+        personDTOList.stream().forEach(p -> p.add(linkTo(methodOn(PersonController.class).findById(p.getId())).withSelfRel()));
         return personDTOList;
     }
 }
