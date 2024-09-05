@@ -3,9 +3,9 @@ package br.com.divinecode.restfullapiudemy.controller;
 import br.com.divinecode.restfullapiudemy.domain.person.Person;
 import br.com.divinecode.restfullapiudemy.domain.person.personDTO.PersonDTO;
 import br.com.divinecode.restfullapiudemy.service.PersonService;
+import br.com.divinecode.restfullapiudemy.util.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,15 +18,15 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
-    //E necessario deixar a configuracao produces = MediaType.APPLICATION_JSON_VALUE para a integracao com o Swagger
-    @GetMapping(value = "/find-by-id/{id}", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+    //E necessario deixar a configuracao produces = MediaType.APPLICATION_JSON para a integracao com o Swagger
+    @GetMapping(value = "/find-by-id/{id}", produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML })
     public ResponseEntity<PersonDTO> findById(@PathVariable(value = "id") Long id) {
         PersonDTO person = personService.findById(id);
 
         return ResponseEntity.ok(person);
     }
 
-    @GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+    @GetMapping(produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML })
     public ResponseEntity<List<PersonDTO>> findAll() {
         List<PersonDTO> personList = personService.findAll();
 
@@ -34,8 +34,8 @@ public class PersonController {
     }
 
     @PostMapping(value = "/create",
-            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
-            consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+            produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML },
+            consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML })
     public ResponseEntity<PersonDTO> create(@RequestBody PersonDTO person) {
         PersonDTO newPerson = personService.create(person);
 
@@ -43,8 +43,8 @@ public class PersonController {
     }
 
     @PostMapping(value = "/update",
-            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
-            consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
+            produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML },
+            consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML })
     public ResponseEntity<PersonDTO> update(@RequestBody PersonDTO person) {
         PersonDTO newPerson = personService.update(person);
 
