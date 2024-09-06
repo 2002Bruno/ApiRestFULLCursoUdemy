@@ -41,7 +41,7 @@ public class PersonService {
         Person personSaved = personRepository.save(personConverted);
 
         PersonDTO personDTOSaved = dozerMapper.parseObject(personSaved, PersonDTO.class);
-        personDTOSaved.add(linkTo(methodOn(PersonController.class).findById(personDTOSaved.getId())).withSelfRel());
+//        personDTOSaved.add(linkTo(methodOn(PersonController.class).findById(personDTOSaved.getId())).withSelfRel());
         return personDTOSaved;
     }
 
