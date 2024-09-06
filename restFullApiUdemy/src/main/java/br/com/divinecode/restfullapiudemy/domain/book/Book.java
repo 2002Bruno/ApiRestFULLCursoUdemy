@@ -1,5 +1,6 @@
 package br.com.divinecode.restfullapiudemy.domain.book;
 
+import br.com.divinecode.restfullapiudemy.domain.person.Person;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,8 +23,12 @@ public class Book implements Serializable {
     @Column(nullable = false, length = 400)
     private String description;
 
-    @Column(nullable = false, length = 80)
-    private String author;
+    @JoinColumn(name = "author_id")
+    @OneToOne
+    private Person author;
+
+    @Column(nullable = false)
+    private Double price;
 
     public Book() {}
 }

@@ -1,5 +1,6 @@
 package br.com.divinecode.restfullapiudemy.domain.book.BookDTO;
 
+import br.com.divinecode.restfullapiudemy.domain.person.Person;
 import br.com.divinecode.restfullapiudemy.domain.person.personDTO.PersonDTO;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
@@ -9,7 +10,7 @@ import java.io.Serializable;
 
 @Data
 //Altera a ordem das variáveis na hora da resposta das requisições
-@JsonPropertyOrder({"id", "firstName", "lastName", "address", "gender"})
+@JsonPropertyOrder({"id", "title", "description", "author", "price"})
 public class BookDTO extends RepresentationModel<PersonDTO> implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -20,7 +21,9 @@ public class BookDTO extends RepresentationModel<PersonDTO> implements Serializa
 
     private String description;
 
-    private String author;
+    private Person author;
+
+    private Double price;
 
     public BookDTO() {}
 }
