@@ -12,7 +12,7 @@ public class TokenDTO implements Serializable {
 
     private String userName;
 
-    private String authenticated;
+    private Boolean authenticated;
 
     private Date created;
 
@@ -24,7 +24,7 @@ public class TokenDTO implements Serializable {
 
     public TokenDTO() {}
 
-    public TokenDTO(String userName, String authenticated, Date created, Date expiration, String accessToken, String refreshToken) {
+    public TokenDTO(String userName, Boolean authenticated, Date created, Date expiration, String accessToken, String refreshToken) {
         this.userName = userName;
         this.authenticated = authenticated;
         this.created = created;
