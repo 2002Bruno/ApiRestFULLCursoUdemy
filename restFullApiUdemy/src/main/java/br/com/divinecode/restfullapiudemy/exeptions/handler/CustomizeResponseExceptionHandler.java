@@ -1,6 +1,7 @@
 package br.com.divinecode.restfullapiudemy.exeptions.handler;
 
 import br.com.divinecode.restfullapiudemy.exeptions.ExeptionResponse;
+import br.com.divinecode.restfullapiudemy.exeptions.InvalidJwtAuthenticationException;
 import br.com.divinecode.restfullapiudemy.exeptions.RequiredObjectIsNullException;
 import br.com.divinecode.restfullapiudemy.exeptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -48,5 +49,15 @@ public class CustomizeResponseExceptionHandler extends ResponseEntityExceptionHa
                 request.getDescription(false));
 
         return new ResponseEntity<>(exeptionResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidJwtAuthenticationException.class)
+    public final ResponseEntity<ExeptionResponse> InvalidJwtAuthenticationException(Exception ex, WebRequest request) {
+        ExeptionResponse exeptionResponse = new ExeptionResponse(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+
+        return new ResponseEntity<>(exeptionResponse, HttpStatus.FORBIDDEN);
     }
 }
