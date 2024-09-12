@@ -17,7 +17,9 @@ spring:
       ddl-auto: none
     show-sql: false
 springdoc:
-  pathsToMatch: /api/**/v1/**
+  pathsToMatch:
+    - /auth/**
+    - /api/**/v1/**
   swagger-ui:
     use-root-path: true
 #      Nao e mais necessario especificar o hibernate dialect,

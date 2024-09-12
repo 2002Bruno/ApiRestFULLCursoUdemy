@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 public class JwtConfigurer extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
     @Autowired
-    private JwtTokenProvider tokenProvider;
+    private TokenProvider tokenProvider;
 
-    public JwtConfigurer(JwtTokenProvider tokenProvider) {
+    public JwtConfigurer(TokenProvider tokenProvider) {
         this.tokenProvider = tokenProvider;
     }
 
