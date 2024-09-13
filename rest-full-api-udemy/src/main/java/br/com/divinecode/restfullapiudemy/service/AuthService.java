@@ -27,7 +27,7 @@ public class AuthService {
     @Autowired
     private UserRepository userRepository;
 
-    @SuppressWarnings("rawTypes")
+    @SuppressWarnings("rawtypes")
     public ResponseEntity siginin(AccountCredentialsDTO accountCredentialsDTO) {
         try {
 
@@ -43,7 +43,7 @@ public class AuthService {
             //verificamos se o usuário foi encontrado
             if (Objects.nonNull(user)) {
 
-            //se o usuario for encontrado, geramos o token de acesso
+                //se o usuario for encontrado, geramos o token de acesso
                 tokenResponse = tokenProvider.createAccessToken(user.getUsername(), user.getRoles());
             } else {
                 throw new UsernameNotFoundException("Username not found!");
@@ -54,5 +54,24 @@ public class AuthService {
         } catch (Exception e) {
             throw new BadCredentialsException("Invalid username or password");
         }
+    }
+
+    @SuppressWarnings("rawtypes")
+    public ResponseEntity refreshToken(String userName, String refreshToken) {
+        //Acessamos o repositório buscando o usuário pelo username
+        User user = userRepository.findByUsername(userName);
+
+        //criamos uma nova instância do TokenDTO para retornalo
+        var tokenResponse = new TokenDTO();
+
+        //verificamos se o usuário foi encontrado
+        if (Objects.nonNull(user)) {
+            //se o usuario for encontrado, geramos o token de acesso
+            tokenResponse = tokenProvider.refreshToken(refreshToken);
+        } else {
+            throw new UsernameNotFoundException("Username not found!");
+        }
+        //retornamos o token
+        return ResponseEntity.ok(tokenResponse);
     }
 }

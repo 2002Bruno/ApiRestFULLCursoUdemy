@@ -31,7 +31,7 @@ public class SecurityConfig {
         //para o login, documentação do swagger, consumo das api's e
         //configuração do gerênciamento de sessão da aplicação
         httpSecurity.authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/signin", "/auth/refresh", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
+                        .requestMatchers("/auth/signin", "/auth/refresh/**", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
                         .requestMatchers("/api/**").authenticated()
                         .requestMatchers("/users").denyAll());
 

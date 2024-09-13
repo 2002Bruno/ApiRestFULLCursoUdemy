@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>br.com.DivineCode</groupId>
-    <artifactId>restFullApiUdemy</artifactId>
+    <artifactId>rest-full-api-udemy</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>restFullApiUdemy</name>
     <description>restFullApiUdemy</description>

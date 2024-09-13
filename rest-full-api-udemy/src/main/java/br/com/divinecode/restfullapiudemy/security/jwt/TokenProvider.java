@@ -64,6 +64,15 @@ public class TokenProvider {
                 .strip();
     }
 
+    public TokenDTO refreshToken(String refreshToken) {
+        if (refreshToken.contains("")) refreshToken = refreshToken.substring("Bearer ".length());
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        DecodedJWT decodedJWT = verifier.verify(refreshToken);
+        String userName = decodedJWT.getSubject();
+        List<String> roles = decodedJWT.getClaim("roles").asList(String.class);
+        return createAccessToken(userName, roles);
+    }
+
     //Método para refreshToken
     private String getRefreshToken(String userName, List<String> roles, Date now) {
         Date validRefreshToken = new Date(now.getTime() + validInMilliSeconds * 3);

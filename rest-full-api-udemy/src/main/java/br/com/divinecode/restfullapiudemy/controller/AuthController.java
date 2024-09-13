@@ -7,10 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 
@@ -33,6 +30,23 @@ public class AuthController {
         if (Objects.isNull(siginin)) return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid request");
 
         return siginin;
+    }
+
+    @SuppressWarnings("rawtypes")
+    @Operation(summary = "Utilização do refresh token para atualizar tempo ou outras infromações")
+    @PutMapping("/refresh/{username}")
+    public ResponseEntity refreshToken(@PathVariable("username") String username, @RequestHeader("Authorization") String refreshToken) {
+        if (checkParamsToRefreshToken(username, refreshToken)) return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid request");
+
+        ResponseEntity siginin = authService.refreshToken(username, refreshToken);
+
+        if (Objects.isNull(siginin)) return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid request");
+
+        return siginin;
+    }
+
+    private static boolean checkParamsToRefreshToken(String username, String refreshToken) {
+        return Objects.isNull(refreshToken) || refreshToken.isBlank() || Objects.isNull(username) || username.isBlank();
     }
 
     private static boolean checkIfParamsIsNotNull(AccountCredentialsDTO accountCredentialsDTO) {
