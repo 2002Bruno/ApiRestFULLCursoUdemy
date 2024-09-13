@@ -26,7 +26,7 @@ jobs:
         cache: maven
         
     - name: Build application JAR
-      working-directory: ./22_DockerizingOurApp/rest-with-apring-boot-and-java-restfull
+      working-directory: ./22_DockerizingOurApp/rest-full-api-udemy
       run: mvn -B package --file pom.xml
 
     - name: Docker compose build
