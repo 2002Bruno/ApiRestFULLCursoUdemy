@@ -26,11 +26,11 @@ jobs:
         cache: maven
         
     - name: Build application JAR
-      working-directory: ./22_DockerizingOurApp/rest-full-api-udemy
+      working-directory: ./Curso udemy REST API RESTUFUL DO O Á AWS java e docker/rest-full-api-udemy
       run: mvn -B package --file pom.xml
 
     - name: Docker compose build
-      working-directory: ./22_DockerizingOurApp
+      working-directory: ./Curso udemy REST API RESTUFUL DO O Á AWS java e docker
       run: docker compose build
 
     - name: Push to Docker Hub Container Registry
