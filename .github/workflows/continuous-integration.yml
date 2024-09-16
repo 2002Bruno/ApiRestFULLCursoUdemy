@@ -26,11 +26,11 @@ jobs:
         cache: maven
         
     - name: Build application JAR
-      working-directory: /rest-full-api-udemy
+      working-directory: ApiRestFULLCursoUdemy/rest-full-api-udemy
       run: mvn clean package
 
     - name: Docker compose build
-      working-directory: ./
+      working-directory: ./ApiRestFULLCursoUdemy
       run: docker compose build
 
     - name: Push to Docker Hub Container Registry
