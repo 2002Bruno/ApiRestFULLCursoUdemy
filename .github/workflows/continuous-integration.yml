@@ -26,7 +26,7 @@ jobs:
         cache: maven
         
     - name: Build application JAR
-      working-directory: ./home/runner/work/ApiRestFULLCursoUdemy/ApiRestFULLCursoUdemy
+      working-directory: /rest-full-api-udemy
       run: mvn clean package
 
     - name: Docker compose build
