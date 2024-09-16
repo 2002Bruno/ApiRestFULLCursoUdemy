@@ -30,7 +30,8 @@ jobs:
       run: mvn clean package
 
     - name: Docker compose build
-      run: docker-compose -f ./rest-full-api-udemy/docker-compose.yml build
+      working-directory: ./rest-full-api-udemy/
+      run: docker compose build
 
     - name: Push to Docker Hub Container Registry
       run: |
