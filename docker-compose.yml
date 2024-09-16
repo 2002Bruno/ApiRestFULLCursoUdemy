@@ -20,7 +20,7 @@ services:
   rest-full-api-udemy:
     image: brunorodrigues2002/rest-full-api-udemy
     restart: always
-    build: .
+    build: ./rest-full-api-udemy
     working_dir: /rest-full-api-udemy
     environment:
       TZ: America/Sao_Paulo

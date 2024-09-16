@@ -31,7 +31,7 @@ jobs:
 
     - name: Docker compose build
       working-directory: ./rest-full-api-udemy/
-      run: docker compose build
+      run: docker compose -f ./docker-compose.yml build
 
     - name: Push to Docker Hub Container Registry
       run: |
