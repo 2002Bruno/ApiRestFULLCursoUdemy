@@ -34,7 +34,8 @@ jobs:
 
     - name: Push to Docker Hub Container Registry
       run: |
-        docker tag {{ secrets.DOCKER_USERNAME }}/rest-full-api-udemy:${{ github.run_id }}
+        docker tag ${{ secrets.DOCKER_USERNAME }}/rest-full-api-udemy:latest brunorodrigues2002/rest-full-api-udemy:${{ github.run_id }}
 
-        docker push {{ secrets.DOCKER_USERNAME }}/rest-full-api-udemy:${{ github.run_id }}
-        docker push {{ secrets.DOCKER_USERNAME }}/rest-full-api-udemy:latest
+        docker push brunorodrigues2002/rest-full-api-udemy:${{ github.run_id }}
+
+        docker push brunorodrigues2002/rest-full-api-udemy:latest
