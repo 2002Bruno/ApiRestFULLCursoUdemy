@@ -30,7 +30,6 @@ jobs:
       run: mvn clean package
 
     - name: Docker compose build
-      working-directory: ./ApiRestFULLCursoUdemy
       run: docker compose build
 
     - name: Push to Docker Hub Container Registry
